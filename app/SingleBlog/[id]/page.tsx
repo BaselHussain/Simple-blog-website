@@ -108,7 +108,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <Header />
+      
       <div className="w-[80%] mx-auto flex flex-col items-center mt-16 gap-8">
         <h1 className="text-3xl font-bold text-center">{blog?.title}</h1>
         <p className="leading-loose font-semibold">{blog?.content}</p>
