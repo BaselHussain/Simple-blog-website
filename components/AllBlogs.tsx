@@ -1,5 +1,4 @@
 import React from 'react';
-import { posts } from '@/lib/blogs';
 import { Card,CardContent,CardHeader,CardDescription,CardTitle,CardFooter } from './ui/card';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,12 +6,22 @@ import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 
 export default async function AllBlogs() {
+  interface Post{
+summary:string;
+title:string;
+image:any;
+author:string;
+slug:string
+  }
+
+
+
   const query=`
  *[_type=='blog'] | order(_createdAt asc){
   summary,title,image,author,
     "slug":slug.current
 }`
-const posts=await client.fetch(query)
+const posts:Post[]=await client.fetch(query)
 
   return (
    <>
@@ -20,9 +29,9 @@ const posts=await client.fetch(query)
    <h1 className='text-4xl font-bold text-center my-16'>All Blogs</h1>
    <div className='grid grid-cols-1 md:grid-cols-3 gap-7  '>
     
-   {posts.map((post:any)=>(
+   {posts.map((post:Post,index:number)=>(
     <Link href={`SingleBlog/${post.slug}`}>
-    <Card key={post.id} className=' h-[600px] rounded-lg shadow-lg'>
+    <Card key={index} className=' h-[600px] rounded-lg shadow-lg'>
       <div className='w-full h-[60%] rounded-lg'>
 <Image
 src={urlFor(post.image).url()}
