@@ -117,14 +117,14 @@ export default function PageClient({ post }:{post:PageClientProps}) {
       <div className="w-[80%] mx-auto flex flex-col items-center mt-16 gap-8">
         <h1 className="text-3xl font-bold text-center">{post.title}</h1>
         <section className="text-lg 
-          prose-li:list-disc   prose-2xl 
+          prose-li:list-disc  prose-2xl 
         ">
             
           <PortableText value={post.content}/>
         </section>
 
         <div className="flex p-3 flex-col items-center gap-4 w-[70%] mx-auto">
-          <h1 className="text-2xl font-bold">Add Your Comment</h1>
+          <h1 className="text-2xl font-bold">Add Your Comments</h1>
           <Input
             className="w-full"
             value={newComment.name}
